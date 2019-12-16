@@ -30,9 +30,9 @@ public class Sqlconnect {
         Connection conn;
          try {
             conn = this.getSQLServerConnection();
-             System.out.println("ket noi data thanh cong");
+            System.out.println("ket noi data thanh cong");
              
-             rs = new ArrayList();
+            rs = new ArrayList();
             Statement statement = conn.createStatement();
             String sql = "SELECT * FROM USER_LOGIN WHERE name like '" + username + "' and pass like '" + password + "'";
             //PreparedStatement statement = conn.prepareStatement(sql);

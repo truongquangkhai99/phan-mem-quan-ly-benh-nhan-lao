@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 
 public class Sqlconnect {
-     public  Connection getSQLServerConnection() throws ClassNotFoundException, SQLException {
+     public Connection getSQLServerConnection() throws ClassNotFoundException, SQLException {
      
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=QLBN;user=TienNguyen;password=331212";  
@@ -54,4 +54,13 @@ public class Sqlconnect {
          }
         return rs;
     }
+
+    public ResultSet LoadData(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void Updata(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

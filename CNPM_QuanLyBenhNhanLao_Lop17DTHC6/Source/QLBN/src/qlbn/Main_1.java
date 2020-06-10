@@ -43,6 +43,8 @@ public class Main_1 extends javax.swing.JFrame {
         btnThemThongTinBenhNhanLao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThemThongTinBenhNhanLao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconthem.png"))); // NOI18N
         btnThemThongTinBenhNhanLao.setText("THÊM THÔNG TIN BỆNH NHÂN");
+        btnThemThongTinBenhNhanLao.setAlignmentX(5.0F);
+        btnThemThongTinBenhNhanLao.setAlignmentY(5.0F);
         btnThemThongTinBenhNhanLao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemThongTinBenhNhanLaoActionPerformed(evt);
@@ -51,7 +53,6 @@ public class Main_1 extends javax.swing.JFrame {
         getContentPane().add(btnThemThongTinBenhNhanLao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 280, 110));
 
         btnTimKiemThongTin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnTimKiemThongTin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tien Nguyen\\Desktop\\QLBN\\src\\qlbn\\icontimxoasua.png")); // NOI18N
         btnTimKiemThongTin.setText("TÌM KIẾM - SỬA - XOÁ  THÔNG TIN ");
         btnTimKiemThongTin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +118,7 @@ public class Main_1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         GiaoDienThongTinVePhanMem a = new GiaoDienThongTinVePhanMem();
         a.setVisible(true);
+        
     }//GEN-LAST:event_btnThongTinSanPhamActionPerformed
 
     /**

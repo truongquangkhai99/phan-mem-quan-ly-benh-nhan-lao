@@ -9,12 +9,12 @@ package qlbn;
  *
  * @author Tien Nguyen
  */
-public class Main_1 extends javax.swing.JFrame {
+public class ManHinhChinh extends javax.swing.JFrame {
 
     /**
      * Creates new form Main_1
      */
-    public Main_1() {
+    public ManHinhChinh() {
         initComponents();
         setLocationRelativeTo(null);  
         
@@ -51,7 +51,7 @@ public class Main_1 extends javax.swing.JFrame {
         getContentPane().add(btnThemThongTinBenhNhanLao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 280, 110));
 
         btnTimKiemThongTin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnTimKiemThongTin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tien Nguyen\\Desktop\\QLBN\\src\\qlbn\\icontimxoasua.png")); // NOI18N
+        btnTimKiemThongTin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/icontimxoasua.png"))); // NOI18N
         btnTimKiemThongTin.setText("TÌM KIẾM - SỬA - XOÁ  THÔNG TIN ");
         btnTimKiemThongTin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,15 +136,16 @@ public class Main_1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Main_1().setVisible(true);
+            new ManHinhChinh().setVisible(true);
         });
     }
 

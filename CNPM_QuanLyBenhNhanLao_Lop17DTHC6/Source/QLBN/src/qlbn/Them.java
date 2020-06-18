@@ -1,35 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package qlbn;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import DAO.BENHNHAN;
-import BUS.BENHNHANBUS;
-import DAO.THUOC;
-import java.util.ArrayList;
-import java.util.List;
+import Connection.SqlConnection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Calendar;
+
 /**
  *
  * @author Tien Nguyen
  */
 public class Them extends javax.swing.JFrame {
-     /**
-     * Creates new form QLBNL
-     */
+
+    Statement statement;
+    Connection conn;
+    ResultSet resultSet;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
     public Them() {
         initComponents();
-  
+        try {
+            SqlConnection sqlConn = new SqlConnection();
+            conn = sqlConn.getSQLServerConnection();
+            try {
+                statement = conn.createStatement();
+            } catch (SQLException ex) {
+                Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sql = "SELECT * FROM LOAIBENHNHAN";
+            ResultSet resultSet;
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                this.cbxLoaiBN.addItem(resultSet.getString(2));
+            }
+            String sqlLoaiThuoc = "SELECT * FROM LOAITHUOC";
+            resultSet = statement.executeQuery(sqlLoaiThuoc);
+            while (resultSet.next()) {
+                this.cbxLoaiThuoc.addItem(resultSet.getString("TENLOAI"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        this.dtpNgayDT.setFormats("dd/MM/yyyy");
     }
 
-    /**23
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,35 +65,22 @@ public class Them extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        txtRHZE = new javax.swing.JTextField();
-        txtSM = new javax.swing.JTextField();
-        txtRHZ = new javax.swing.JTextField();
-        txtEMB = new javax.swing.JTextField();
-        txtE = new javax.swing.JTextField();
-        txtRH = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtRH15_10 = new javax.swing.JTextField();
-        txtRH15_7 = new javax.swing.JTextField();
-        txtRH10_10 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtLocation = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         rbtNam = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
         rbtNu = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
+        txtThoiGianDT = new javax.swing.JTextField();
+        lbNgayDieuTri = new javax.swing.JLabel();
+        cbxLoaiThuoc = new javax.swing.JComboBox<>();
         txtAge = new javax.swing.JTextField();
-        cbxloaibenhnhan = new javax.swing.JComboBox<>();
-        cbbcannang = new javax.swing.JComboBox<>();
+        cbxLoaiBN = new javax.swing.JComboBox<>();
+        txtCanNang = new javax.swing.JTextField();
+        dtpNgayDT = new org.jdesktop.swingx.JXDatePicker();
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,7 +105,7 @@ public class Them extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Loại thuốc (Viên)");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 314, -1, 48));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, 48));
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/sign-add-icon.png"))); // NOI18N
@@ -119,99 +129,6 @@ public class Them extends javax.swing.JFrame {
         });
         getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(707, 599, 79, -1));
 
-        txtRHZE.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRHZE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtRHZE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRHZEActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtRHZE, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 80, 30));
-
-        txtSM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtSM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtSM, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 84, 32));
-
-        txtRHZ.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRHZ.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtRHZ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRHZActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtRHZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, 80, 30));
-
-        txtEMB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtEMB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtEMB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEMBActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtEMB, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 84, 29));
-
-        txtE.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtE, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 84, 33));
-
-        txtRH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRH.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtRH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRHActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtRH, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 348, 80, 29));
-
-        jLabel4.setText("SM");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 409, 26, 25));
-
-        jLabel5.setText("RHZE");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 413, -1, 20));
-
-        jLabel6.setText("RHZ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 37, -1));
-
-        jLabel7.setText("E");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 34, -1));
-
-        jLabel8.setText("EMB");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 363, 34, -1));
-
-        jLabel9.setText("RH");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 350, 34, 29));
-
-        txtRH15_10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRH15_10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtRH15_10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRH15_10ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtRH15_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(707, 345, 75, 28));
-
-        txtRH15_7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRH15_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtRH15_7, new org.netbeans.lib.awtextra.AbsoluteConstraints(707, 406, 75, 32));
-
-        txtRH10_10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRH10_10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtRH10_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(707, 464, 75, 29));
-
-        jLabel10.setText("RH150/100");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 416, -1, -1));
-
-        jLabel11.setText("RH150/7");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 353, -1, -1));
-
-        jLabel12.setText("RH100/100");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 473, -1, -1));
-
         txtName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 46, 544, 28));
@@ -234,6 +151,7 @@ public class Them extends javax.swing.JFrame {
 
         btnGroupGioiTinh.add(rbtNam);
         rbtNam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtNam.setSelected(true);
         rbtNam.setText("Nam");
         rbtNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +159,10 @@ public class Them extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbtNam, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 163, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Thời Gian Điều Trị (Tháng) ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, -1, 30));
 
         btnGroupGioiTinh.add(rbtNu);
         rbtNu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -256,6 +178,27 @@ public class Them extends javax.swing.JFrame {
         jLabel16.setText("Tuổi");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 159, 50, 33));
 
+        txtThoiGianDT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtThoiGianDT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtThoiGianDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtThoiGianDTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtThoiGianDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 167, 30));
+
+        lbNgayDieuTri.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbNgayDieuTri.setText("Ngày Điều Trị");
+        getContentPane().add(lbNgayDieuTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+
+        cbxLoaiThuoc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbxLoaiThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxLoaiThuocActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbxLoaiThuoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 180, 33));
+
         txtAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtAge.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -263,14 +206,25 @@ public class Them extends javax.swing.JFrame {
                 txtAgeActionPerformed(evt);
             }
         });
-        getContentPane().add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 162, 167, 28));
+        getContentPane().add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 167, 28));
 
-        cbxloaibenhnhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbxloaibenhnhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mới", "Tái phát", "Kháng thuốc", "Trẻ em" }));
-        getContentPane().add(cbxloaibenhnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 222, 159, 33));
+        cbxLoaiBN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbxLoaiBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxLoaiBNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbxLoaiBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 222, 180, 33));
 
-        cbbcannang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "< 39", "40 -> 55", "56 -> 70", "> 70" }));
-        getContentPane().add(cbbcannang, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 224, 167, 33));
+        txtCanNang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCanNang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCanNang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCanNangActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtCanNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 167, 28));
+        getContentPane().add(dtpNgayDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 180, 30));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/gdthem.jpg"))); // NOI18N
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 650));
@@ -279,141 +233,175 @@ public class Them extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRHZEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRHZEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRHZEActionPerformed
-
-    private void txtRHZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRHZActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRHZActionPerformed
-
-    private void txtEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEActionPerformed
-
-    private void txtRH15_10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRH15_10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRH15_10ActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
-        BENHNHANBUS benhnhan = new BENHNHANBUS();
-        BENHNHAN bn = new BENHNHAN();
-//         TODO add your handling code here:   
-        // Thêm phần dùng thuốc
+    public void InsertSuDungThuoc(int MaBN, int SLVRHZ, int SLVE, int SLVRH, String ngayBDTC, String ngayKTTC, String ngayBDCC, String ngayKTCC) {
+        //lấy ra mã loại thuốc RHZ cho bệnh nhân Mới
         try {
-            
-            // Thông tin bệnh nhân
-            String gioiTinh = "Nữ";
-            if (rbtNam.isSelected())
-                gioiTinh = "Nam";
+            String sqlRHZ = "select MALOAI from LOAITHUOC where LOAITHUOC.TENLOAI = 'RHZ'";
+            resultSet = statement.executeQuery(sqlRHZ);
+            int maRHZ = 0;
+            while (resultSet.next()) {
+                maRHZ = resultSet.getInt(1);
+            }
 
-            bn.setMABN("BN12");
-            bn.setTENBN(txtName.getText().toString());
-            bn.setDIACHI(txtLocation.getText().toString());
-            bn.setTUOI(Integer.parseInt(txtAge.getText().toString()));
-            bn.setGIOITINH(gioiTinh);
-            bn.setLOAIBN(cbxloaibenhnhan.getSelectedItem().toString());
-            bn.setCANNANG(cbbcannang.getSelectedItem().toString());
+            //lấy ra mã loại thuốc E cho bệnh nhân Mớiselect MALOAI from LOAITHUOC where LOAITHUOC.TENLOAI = 'RHZ'
+            String sqlE = "select MALOAI from LOAITHUOC where LOAITHUOC.TENLOAI = 'E'";
+            resultSet = statement.executeQuery(sqlE);
+            int maE = 0;
+            while (resultSet.next()) {
+                maE = resultSet.getInt(1);
+            }
 
-//            System.out.println( cbbcannang.getSelectedItem().toString());
-            
-            // Thông tin thuốc
-            List<THUOC> DanhSachThuoc=new ArrayList();
-            if(! txtEMB.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("EMB", Integer.parseInt(txtEMB.getText()));
-                DanhSachThuoc.add(tmp);
+            //lấy ra mã loại thuốc RH cho bệnh nhân Mới
+            String sqlRH = "select MALOAI from LOAITHUOC where LOAITHUOC.TENLOAI = 'RH'";
+            resultSet = statement.executeQuery(sqlRH);
+            int maRH = 0;
+            while (resultSet.next()) {
+                maRH = resultSet.getInt(1);
             }
-            if(! txtSM.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("SM", Integer.parseInt(txtSM.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtE.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("E", Integer.parseInt(txtE.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtRH.getText().isEmpty())
-            {
-               THUOC tmp = new THUOC("RH", Integer.parseInt(txtRH.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtRHZE.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("RHZE", Integer.parseInt(txtRHZE.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtRHZ.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("RHZ", Integer.parseInt(txtRHZ.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtRH15_7.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("RH150_7", Integer.parseInt(txtRH15_7.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtRH15_10.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("RH150_10", Integer.parseInt(txtRH15_10.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            if(! txtRH10_10.getText().isEmpty())
-            {
-                THUOC tmp = new THUOC("RH100_100", Integer.parseInt(txtRH10_10.getText()));
-                DanhSachThuoc.add(tmp);
-            }
-            
-            
-            bn.setDanhSachThuoc(DanhSachThuoc);
-            
-            benhnhan.thembenhnhan(bn, 1);
 
-            Object[] options = {"OK"};
-            int input = JOptionPane.showOptionDialog(null, "Đã lưu thông tin bệnh nhân thành công !", "Thông báo", 
-                    JOptionPane.YES_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,options[0]);
-
-            if(input == JOptionPane.YES_OPTION)
-            {
-                Main_1 frm = new Main_1();
-                this.setVisible(false);
-                frm.setVisible(true);
+            String insertSDT1 = "INSERT INTO SUDUNGTHUOC (MALOAI,MABN,SoLuongVien,NgayBDTC,NgayKTTC,NgayBDCC,NgayKTCC)\n"
+                    + "VALUES ('" + maRHZ + "', '" + MaBN + "', '" + SLVRHZ + "', '" + ngayBDTC +"', '" + ngayKTTC + "', null, null)";
+            int row1 = statement.executeUpdate(insertSDT1);
+            if (row1 > 0) {
+                System.out.println("insert mã thuốc RHZ thành công");
+            } else {
+                System.out.println("insert mã thuốc RHZ thất bại");
             }
-        } catch (NumberFormatException ex)
-        {
-            Logger.getLogger(Them.class.getName()).log(Level.SEVERE, null, ex);
-            
-            Object[] options = {"OK"};
-           JOptionPane.showOptionDialog(null, "Bạn hãy điền đầy đủ thông tin !", 
-                   "Thông báo", JOptionPane.YES_OPTION, JOptionPane.INFORMATION_MESSAGE, 
-                   null, options,options[0]);
 
+            String insertSDT2 = "INSERT INTO SUDUNGTHUOC (MALOAI,MABN,SoLuongVien,NgayBDTC,NgayKTTC,NgayBDCC,NgayKTCC)\n"
+                    + "VALUES ('" + maE + "', '" + MaBN + "', '" + SLVE + "', '" + ngayBDTC + "', '" + ngayKTTC + "','" + ngayBDCC + "','" + ngayKTCC + "')";
+            int row2 = statement.executeUpdate(insertSDT2);
+            if (row2 > 0) {
+                System.out.println("insert mã thuốc E thành công");
+            } else {
+                System.out.println("insert mã thuốc E thất bại");
+            }
+            
+            String insertSDT3 = "INSERT INTO SUDUNGTHUOC (MALOAI,MABN,SoLuongVien,NgayBDTC,NgayKTTC,NgayBDCC,NgayKTCC)\n"
+                    + "VALUES ('" + maRH + "', '" + MaBN + "', '" + SLVRH + "', null, null,'" + ngayBDCC + "','" + ngayKTCC + "')";          
+            int row3 = statement.executeUpdate(insertSDT3);
+            if (row3 > 0) {
+                System.out.println("insert mã thuốc RH thành công");
+            } else {
+                System.out.println("insert mã thuốc RH thất bại");
+            }
+            
+            //thêm thành công thì dẫn đến màn hình Quản Lý Thông Tin Bệnh Nhân
+            TimXoaSua txs = new TimXoaSua();
+            txs.setVisible(true);
+            this.setVisible(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        catch (Exception ex) {
-            Logger.getLogger(Them.class.getName()).log(Level.SEVERE, null, ex);
-            
-            Object[] options = {"OK"};
-            int input = JOptionPane.showOptionDialog(null, "Lưu thông tin không thành công !", 
-                    "Thông báo", JOptionPane.ERROR_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, options,options[0]);
+    }
 
-            if(input == JOptionPane.YES_OPTION)
-            {
-                Them frm = new Them();
-                this.setVisible(false);
-                frm.setVisible(true);
+    //thêm tháng dùng Calendar truyền vào date + số tháng trả về date
+    public Date addMonth(Date date, int i) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, i);
+        return cal.getTime();
+    }
+    
+    //thêm ngày dùng Calendar truyền vào date + số ngày trả về date
+    public static Date addDay(Date date, int i) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_YEAR, i);
+        return cal.getTime();
+    }
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            //Lấy Thông tin bệnh nhân từ giao diện nhập vào
+            String ten = txtName.getText();
+            Boolean gioiTinh = true;
+            if (rbtNu.isSelected()) {
+                gioiTinh = false;
             }
+            int tuoi = Integer.parseInt(txtAge.getText());
+            String diaChi = txtLocation.getText();
+            int loaiBN = cbxLoaiBN.getSelectedIndex();
+            int canNang = Integer.parseInt(txtCanNang.getText());
+            Date ngayDT = dtpNgayDT.getDate();
+            int thoiGianTC = 0, thoiGianCC = 0;
+
+            if (cbxLoaiBN.getSelectedIndex() == 0) {
+                thoiGianTC = 2;
+                thoiGianCC = 4;
+                txtThoiGianDT.setText("6");
+            } else {
+                if (cbxLoaiBN.getSelectedIndex() == 1) {
+                    thoiGianTC = 3;
+                    thoiGianCC = 5;
+                    txtThoiGianDT.setText("8");
+                }
+            }
+            int thoiGianDT = Integer.parseInt(txtThoiGianDT.getText());
+            loaiBN++;
+            String ngayBDTC = formatter.format(ngayDT);
+            //viết câu insert xuống db
+            String sqlInsertBN = "INSERT INTO BENHNHAN (TENBN,TUOI,DIACHI,GIOITINH,MALOAIBN,CANNANG,NGAYBDDT,THOIGIANDT,THOIGIANTC,THOIGIANCC)\n"
+                    + "VALUES (N'" + ten + "', '" + tuoi + "', N'" + diaChi + "', '" + gioiTinh + "', '" + loaiBN + "','" + canNang + "','" + ngayBDTC + "','" + thoiGianDT + "','" + thoiGianTC + "', '" + thoiGianCC + "')";
+
+            //excuteUpdate trả về số dòng thực hiện đc
+            int rowBN = statement.executeUpdate(sqlInsertBN);
+            if (rowBN > 0) {
+                JOptionPane.showMessageDialog(null, "Thêm bệnh nhân thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Không thể thêm bệnh nhân!");
+            }
+
+            //lấy ra mã bn vừa insert vào để insert vào bảng sử dụng thuốc
+            String sqlLayMaBN = "select MAX(MaBN) from BENHNHAN";
+            ResultSet resultSet = statement.executeQuery(sqlLayMaBN);
+            int layMaBN = 0;
+            while (resultSet.next()) {
+                layMaBN = resultSet.getInt(1);
+            }
+
+            //mỗi bệnh nhân có 1 danh sách thuốc sdung
+            if (loaiBN == 1) {
+                Date ngayKTTC = addMonth(ngayDT, 2);
+                Date ngayBDCC = addDay(ngayKTTC, 1);
+                Date ngayKTCC = addMonth(ngayBDCC, 2);
+                if (canNang < 39) {
+                    InsertSuDungThuoc(layMaBN, 2, 2, 2, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                }
+                if (canNang >= 40 && canNang < 55) {
+                    InsertSuDungThuoc(layMaBN, 3, 2, 3, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                }
+                if (canNang >= 55 && canNang < 70) {
+                    InsertSuDungThuoc(layMaBN, 4, 3, 4, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                }
+                if (canNang >= 70) {
+                    InsertSuDungThuoc(layMaBN, 5, 4, 5, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                }
+            } else {
+                if (loaiBN == 2) {
+                    Date ngayKTTC = addMonth(ngayDT, 3);
+                    Date ngayBDCC = addDay(ngayKTTC, 1);
+                    Date ngayKTCC = addMonth(ngayBDCC, 5);
+                    if (canNang < 39) {
+                        InsertSuDungThuoc(layMaBN, 2, 2, 2, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    }
+                    if (canNang >= 40 && canNang < 55) {
+                        InsertSuDungThuoc(layMaBN, 3, 2, 3, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    }
+                    if (canNang >= 55 && canNang < 70) {
+                        InsertSuDungThuoc(layMaBN, 4, 3, 4, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    }
+                    if (canNang >= 70) {
+                        InsertSuDungThuoc(layMaBN, 5, 4, 5, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-
-
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-//    System.exit(0);
-//    Main_1 frm = new Main_1();
-//    frm.setVisible(true);
-    this.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void rbtNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNuActionPerformed
@@ -424,22 +412,30 @@ public class Them extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtNamActionPerformed
 
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+    private void txtThoiGianDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThoiGianDTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
-
-    private void txtRHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRHActionPerformed
-
-    private void txtEMBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEMBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEMBActionPerformed
+    }//GEN-LAST:event_txtThoiGianDTActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
 //        this.setVisible(false);
     }//GEN-LAST:event_formWindowClosed
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
+
+    private void cbxLoaiThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxLoaiThuocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxLoaiThuocActionPerformed
+
+    private void txtCanNangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCanNangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCanNangActionPerformed
+
+    private void cbxLoaiBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxLoaiBNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxLoaiBNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,22 +446,22 @@ public class Them extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Them.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -482,12 +478,10 @@ public class Them extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroupGioiTinh;
     private javax.swing.ButtonGroup btnGroupLoaiBenhNhan;
     private javax.swing.ButtonGroup btnGroupSoKy;
-    private javax.swing.JComboBox<String> cbbcannang;
-    private javax.swing.JComboBox<String> cbxloaibenhnhan;
+    private javax.swing.JComboBox<String> cbxLoaiBN;
+    private javax.swing.JComboBox<String> cbxLoaiThuoc;
+    private org.jdesktop.swingx.JXDatePicker dtpNgayDT;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -495,25 +489,14 @@ public class Them extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbNgayDieuTri;
     private javax.swing.JRadioButton rbtNam;
     private javax.swing.JRadioButton rbtNu;
     private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtE;
-    private javax.swing.JTextField txtEMB;
+    private javax.swing.JTextField txtCanNang;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtRH;
-    private javax.swing.JTextField txtRH10_10;
-    private javax.swing.JTextField txtRH15_10;
-    private javax.swing.JTextField txtRH15_7;
-    private javax.swing.JTextField txtRHZ;
-    private javax.swing.JTextField txtRHZE;
-    private javax.swing.JTextField txtSM;
+    private javax.swing.JTextField txtThoiGianDT;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,8 +32,6 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         label6 = new java.awt.Label();
         label7 = new java.awt.Label();
         label8 = new java.awt.Label();
-        label9 = new java.awt.Label();
-        label10 = new java.awt.Label();
         label11 = new java.awt.Label();
         label13 = new java.awt.Label();
         label14 = new java.awt.Label();
@@ -57,32 +55,25 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label4.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        label4.setText("6 thành viên lớp 17DTHC6 ");
+        label4.setText("lớp 17DTHC6 ");
         getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 160, 20));
 
         label5.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label5.setText("1. Nguyễn Ngọc Thuỷ Tiên (nhóm trưởng)");
+        label5.setText("1. Nguyễn Ngọc Thuỷ Tiên");
         getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         label6.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label6.setText("2. Lê Đồng Phương");
+        label6.setText("2. Đoàn Thị Thanh Lam");
         getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
+        label6.getAccessibleContext().setAccessibleName("2. Đoàn Thị Thanh Lam");
 
         label7.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label7.setText("3. Châu Văn Hưng");
+        label7.setText("3. Nguyễn Hữu Đạt");
         getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         label8.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label8.setText("4. Cao Hữu Duy");
+        label8.setText("4. Nguyễn Hữu Tính");
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, 20));
-
-        label9.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label9.setText("5. Nguyễn Hữu Đạt");
-        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
-
-        label10.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label10.setText("6. Lê Khôi Nguyên");
-        getContentPane().add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
 
         label11.setName(""); // NOI18N
         label11.setText("-----------------------------");
@@ -107,12 +98,13 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         label16.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label16.setText("Email: nguyenngocthuytien994@gmail.com");
         getContentPane().add(label16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 260, -1));
+        label16.getAccessibleContext().setAccessibleName("nguyenngocthuytien0607@gmail.com");
 
         label17.setText("--------------------------------");
         getContentPane().add(label17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 150, -1));
 
         label18.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        label18.setText("SĐT: 01216824757");
+        label18.setText("SĐT: 0796824757");
         getContentPane().add(label18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -120,7 +112,7 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Năm phát hành: 10/10/2018");
+        jLabel3.setText("Năm phát hành: V2-05/06/2020");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/gd_1.jpg"))); // NOI18N
@@ -194,7 +186,6 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private java.awt.Label label10;
     private java.awt.Label label11;
     private java.awt.Label label13;
     private java.awt.Label label14;
@@ -208,6 +199,5 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
     private java.awt.Label label6;
     private java.awt.Label label7;
     private java.awt.Label label8;
-    private java.awt.Label label9;
     // End of variables declaration//GEN-END:variables
 }

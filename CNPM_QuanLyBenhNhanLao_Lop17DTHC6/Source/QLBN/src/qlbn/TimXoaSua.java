@@ -1,21 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package qlbn;
-import BUS.BENHNHANBUS;
-import DAO.BENHNHAN;
-import DAO.THUOC;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Tien Nguyen
@@ -25,49 +9,16 @@ public class TimXoaSua extends javax.swing.JFrame {
     /**
      * Creates new form GiaoDienChinh
      */
-    BENHNHANBUS bnbus=new BENHNHANBUS();
-    List<BENHNHAN> list= new ArrayList();
-    List<BENHNHAN> list_xoa = new ArrayList();
+//    BENHNHANBUS bnbus=new BENHNHANBUS();
+//    List<BENHNHAN> list= new ArrayList();
+//    List<BENHNHAN> list_xoa = new ArrayList();
     
     public TimXoaSua() {
         initComponents();
-        Laydanhsach();
+        //Laydanhsach();
     }
      public void Laydanhsach()
     {
-         try {
-            
-            
-            list= bnbus.Laydanhsachbenhnhan();
-            
-            DefaultTableModel model = (DefaultTableModel) grBenhNhan.getModel();
-            
-            for(int i=0;i<list.size();i++)
-            {
-                String LoaiThuoc = "";
-                int SoLuong = 0;
-                if (list.get(i).getDanhSachThuoc().size() != 0)
-                {
-                    for (THUOC t:list.get(i).getDanhSachThuoc())
-                    {
-                        LoaiThuoc +=  t.getMALOAITHUOC().replace(" ","") + ", ";
-                        System.out.println(LoaiThuoc);
-                        SoLuong += t.getSOLUONG();
-                    }
-                }
-                // Xóa đi 2 kí tự dư cuối
-            if (LoaiThuoc.length() > 0)
-            {
-                LoaiThuoc = LoaiThuoc.substring(0, LoaiThuoc.length() - 2);
-            }
-            model.addRow(new Object[]{list.get(i).getMABN(),list.get(i).getTENBN(),
-                list.get(i).getTUOI(),list.get(i).getDIACHI(),list.get(i).getGIOITINH(),
-                list.get(i).getLOAIBN(), list.get(i).getCANNANG(),LoaiThuoc, SoLuong});
-            }
-       
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Main_1.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -236,120 +187,36 @@ public class TimXoaSua extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        Them a = new Them();
-        a.setVisible(true);
+//        Them a = new Them();
+//        a.setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
-        int index = grBenhNhan.getSelectedRow();
-        System.out.println("\n");
-        System.out.println(index);
-            
-        Sua frm = new Sua(list.get(index));
-        frm.setVisible(true);
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
-        // TODO add your handling code here:
-        XuatExcel frm = new XuatExcel();
-        frm.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btnXuatExcelActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
-        String tim = txtTimKiem.getText();
-        //            List<BENHNHAN> list_tmp= bnbus.Timkiembenhnhan(txtTimKiem.getText().toString());
-        List<BENHNHAN> list_tmp= new ArrayList();
-        for (BENHNHAN b : list)
-            if (b.getTENBN().indexOf(tim) != -1)
-            {
-                System.out.println(b.getTENBN());
-                list_tmp.add(b);
-            }
-        DefaultTableModel model = (DefaultTableModel) grBenhNhan.getModel();
-        while(model.getRowCount() > 0)
-        {
-            model.removeRow(0);
-        }
-        System.out.println(model.getRowCount());
-        for(int i=0;i<list_tmp.size();i++)
-        {
-            String LoaiThuoc = "";
-            int SoLuong = 0;
-            for (THUOC t:list_tmp.get(i).getDanhSachThuoc())
-            {
-                LoaiThuoc += "\n" +  t.getMALOAITHUOC();
-                SoLuong += t.getSOLUONG();
-            }
-            System.out.println(list_tmp.get(i).getTENBN());
-            model.addRow(new Object[]{list_tmp.get(i).getMABN(),list_tmp.get(i).getTENBN(),
-                list_tmp.get(i).getTUOI(),list_tmp.get(i).getDIACHI(),list_tmp.get(i).getGIOITINH(),
-                list_tmp.get(i).getLOAIBN(), list_tmp.get(i).getCANNANG(),LoaiThuoc, SoLuong});
-        }
+       
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        Main_1 a = new Main_1();
-        this.setVisible(false);
-        a.setVisible(true);
+  
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavaActionPerformed
-        // TODO add your handling code here:
-        // Lưu - duyệt xóa các bệnh nhân trong list xóa
-        for(BENHNHAN bn:list_xoa)
-        {
-            try {
-                bnbus.xoabenhnhan(bn);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(TimXoaSua.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(TimXoaSua.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
+       
     }//GEN-LAST:event_btnSavaActionPerformed
 
     private void btnUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUndoActionPerformed
-        // TODO add your handling code here:
-        // Xóa toàn bộ view
-        DefaultTableModel model = (DefaultTableModel) grBenhNhan.getModel();
-        while(model.getRowCount() > 0)
-        {
-            model.removeRow(0);
-        }
-        // Load lại từ database
-        Laydanhsach();
-        
-        // Gán lại list_xoa bằng rổng
-        list_xoa.clear();
+     
     }//GEN-LAST:event_btnUndoActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
-        try{
-            DefaultTableModel model = (DefaultTableModel) grBenhNhan.getModel();
-            int index = grBenhNhan.getSelectedRow();
-            System.out.println("\n");
-            System.out.println(index);
-            
-            // Xóa khỏi view
-            model.removeRow(index);
-            
-            // Đưa vào list xóa
-            list_xoa.add(list.get(index));
-            
-            // Xóa ra khỏi list bệnh nhân
-            list.remove(index);
-            System.out.println (list.size());
-            
-        } catch (ArrayIndexOutOfBoundsException ex)
-        {
-            System.out.println("Lỗi chưa lựa chọn gì, bỏ qua");
-        }
+      
     }//GEN-LAST:event_btnXoaActionPerformed
 
     /**
@@ -401,7 +268,4 @@ public class TimXoaSua extends javax.swing.JFrame {
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
-    void setVisible() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

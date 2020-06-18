@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BUS;
-import Connection.Sqlconnect;
+
+import Connection.SqlConnection;
 import DAO.BENHNHAN;
 import DAO.THUOC;
 import java.sql.Connection;
@@ -23,12 +19,12 @@ import java.util.logging.Logger;
 public class BENHNHANBUS {
     public static Connection conn;
     public static ResultSet rs;
-    public static  Sqlconnect sqlcn;
+    public static  SqlConnection sqlcn;
     
     public List<BENHNHAN> Laydanhsachbenhnhan() throws ClassNotFoundException 
     {
         // Tạo đối tượng của lớp kết nối
-        sqlcn = new Sqlconnect();    
+        sqlcn = new SqlConnection();    
         try {
               // Tạo kết nối databases bằng cách gọi phương thức getSQLServerConnection
               conn = sqlcn.getSQLServerConnection();
@@ -93,7 +89,7 @@ public class BENHNHANBUS {
     public List<BENHNHAN> Timkiembenhnhan(String keywork) throws ClassNotFoundException 
     {
         System.out.println(keywork);
-         sqlcn = new Sqlconnect();
+         sqlcn = new SqlConnection();
          List<BENHNHAN> list=new ArrayList();
 //        try {
 //              a = sqlcn.getSQLServerConnection();
@@ -140,7 +136,7 @@ public class BENHNHANBUS {
     public void thembenhnhan(BENHNHAN benhnhan, int flag) throws ClassNotFoundException, SQLException 
     {
         // Tạo đối tượng của lớp kết nối
-        sqlcn = new Sqlconnect();   
+        sqlcn = new SqlConnection();   
         try {
                 // Tạo kết nối databases bằng cách gọi phương thức getSQLServerConnection
               conn = sqlcn.getSQLServerConnection();
@@ -205,7 +201,7 @@ public class BENHNHANBUS {
  public void xoabenhnhan(BENHNHAN benhnhan) throws ClassNotFoundException, SQLException 
     {
         // Tạo đối tượng của lớp kết nối
-        sqlcn = new Sqlconnect();   
+        sqlcn = new SqlConnection();   
         try {
                 // Tạo kết nối databases bằng cách gọi phương thức getSQLServerConnection
               conn = sqlcn.getSQLServerConnection();
@@ -232,7 +228,7 @@ public class BENHNHANBUS {
     }  
      public String PhatSinhMa() throws SQLException, ClassNotFoundException
    {
-        sqlcn=new Sqlconnect();
+        sqlcn=new SqlConnection();
          //Statement statement = a.createStatement();
         //ResultSet rs1=statement.executeQuery("select top 1 MaRap from RAP where MaRap = " + );
       

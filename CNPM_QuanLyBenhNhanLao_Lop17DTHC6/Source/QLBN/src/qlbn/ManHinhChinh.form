@@ -50,7 +50,7 @@
           <Font name="Tahoma" size="11" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Tien Nguyen\Desktop\QLBN\src\qlbn\icontimxoasua.png"/>
+          <Image iconType="3" name="/qlbn/icontimxoasua.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xcc;M KI&#x1ebe;M - S&#x1eec;A - XO&#xc1;  TH&#xd4;NG TIN "/>
       </Properties>

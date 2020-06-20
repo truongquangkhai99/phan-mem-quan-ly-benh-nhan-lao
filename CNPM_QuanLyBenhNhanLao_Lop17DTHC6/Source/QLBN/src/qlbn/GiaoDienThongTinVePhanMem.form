@@ -36,11 +36,14 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="6 th&#xe0;nh vi&#xea;n l&#x1edb;p 17DTHC6 "/>
+        <Property name="text" type="java.lang.String" value="4 th&#xe0;nh vi&#xea;n l&#x1edb;p 17DTHC6-D1"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="4 th&#xe0;nh vi&#xea;n l&#x1edb;p 17DTHC6-D1"/>
+      </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="170" width="160" height="20"/>
+          <AbsoluteConstraints x="10" y="170" width="170" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -62,7 +65,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="2. L&#xea; &#x110;&#x1ed3;ng Ph&#x1b0;&#x1a1;ng"/>
+        <Property name="text" type="java.lang.String" value="2. Nguy&#x1ec5;n H&#x1eef;u T&#xed;nh"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -75,24 +78,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="3. Ch&#xe2;u V&#x103;n H&#x1b0;ng"/>
+        <Property name="text" type="java.lang.String" value="3. &#x110;o&#xe0;n Thanh Lam"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="10" y="320" width="-1" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="java.awt.Label" name="label8">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="3"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="4. Cao H&#x1eef;u Duy"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="350" width="-1" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -101,24 +91,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="5. Nguy&#x1ec5;n H&#x1eef;u &#x110;&#x1ea1;t"/>
+        <Property name="text" type="java.lang.String" value="4. Nguy&#x1ec5;n H&#x1eef;u &#x110;&#x1ea1;t"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="380" width="-1" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="java.awt.Label" name="label10">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="3"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="6. L&#xea; Kh&#xf4;i Nguy&#xea;n"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="410" width="-1" height="-1"/>
+          <AbsoluteConstraints x="10" y="350" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -239,11 +216,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="N&#x103;m ph&#xe1;t h&#xe0;nh: 10/10/2018"/>
+        <Property name="text" type="java.lang.String" value="N&#x103;m ph&#xe1;t h&#xe0;nh: 27/06/2020"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="530" y="30" width="-1" height="-1"/>
+          <AbsoluteConstraints x="540" y="40" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -271,7 +248,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="620" y="380" width="90" height="40"/>
+          <AbsoluteConstraints x="600" y="380" width="110" height="40"/>
         </Constraint>
       </Constraints>
     </Component>

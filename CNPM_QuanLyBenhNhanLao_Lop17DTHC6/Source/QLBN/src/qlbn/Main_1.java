@@ -32,16 +32,16 @@ public class Main_1 extends javax.swing.JFrame {
         btnThemThongTinBenhNhanLao = new javax.swing.JButton();
         btnTimKiemThongTin = new javax.swing.JButton();
         btnThongTinSanPham = new javax.swing.JButton();
-        btnXuatExcel = new javax.swing.JButton();
+        btnThemLoaiBenhNhan = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        btnThemLoaiThuoc = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnThemThongTinBenhNhanLao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnThemThongTinBenhNhanLao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconthem.png"))); // NOI18N
+        btnThemThongTinBenhNhanLao.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnThemThongTinBenhNhanLao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/user (2).png"))); // NOI18N
         btnThemThongTinBenhNhanLao.setText("THÊM THÔNG TIN BỆNH NHÂN");
         btnThemThongTinBenhNhanLao.setAlignmentX(5.0F);
         btnThemThongTinBenhNhanLao.setAlignmentY(5.0F);
@@ -50,47 +50,55 @@ public class Main_1 extends javax.swing.JFrame {
                 btnThemThongTinBenhNhanLaoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnThemThongTinBenhNhanLao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 280, 110));
+        getContentPane().add(btnThemThongTinBenhNhanLao, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 320, 110));
 
-        btnTimKiemThongTin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnTimKiemThongTin.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnTimKiemThongTin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/menu (1).png"))); // NOI18N
         btnTimKiemThongTin.setText("TÌM KIẾM - SỬA - XOÁ  THÔNG TIN ");
         btnTimKiemThongTin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemThongTinActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimKiemThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 290, 110));
+        getContentPane().add(btnTimKiemThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 320, 110));
 
-        btnThongTinSanPham.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnThongTinSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconquestion.png"))); // NOI18N
-        btnThongTinSanPham.setText("THÔNG TIN VỀ PHẦN MỀM");
+        btnThongTinSanPham.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnThongTinSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/question.png"))); // NOI18N
         btnThongTinSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThongTinSanPhamActionPerformed(evt);
             }
         });
-        getContentPane().add(btnThongTinSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 280, 110));
+        getContentPane().add(btnThongTinSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 70, 60));
 
-        btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnXuatExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconexcel.png"))); // NOI18N
-        btnXuatExcel.setText("XUẤT EXCEL");
-        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+        btnThemLoaiBenhNhan.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnThemLoaiBenhNhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/add.png"))); // NOI18N
+        btnThemLoaiBenhNhan.setText("THÊM LOẠI BỆNH NHÂN");
+        btnThemLoaiBenhNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXuatExcelActionPerformed(evt);
+                btnThemLoaiBenhNhanActionPerformed(evt);
             }
         });
-        getContentPane().add(btnXuatExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 290, 110));
+        getContentPane().add(btnThemLoaiBenhNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 320, 110));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PHẦN MỀM QUẢN LÝ BỆNH NHÂNH LAO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 480, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 600, 80));
 
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
+        btnThemLoaiThuoc.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnThemLoaiThuoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/plus.png"))); // NOI18N
+        btnThemLoaiThuoc.setText("THÊM LOẠI THUỐC");
+        btnThemLoaiThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemLoaiThuocActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnThemLoaiThuoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 320, 110));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/hinhnen_main.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 0, 800, 500));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/pngtree-background-with-pills-frame-for-write-text-inside-png-image_3670178.jpg"))); // NOI18N
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, -560, 1070, 1060));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,11 +116,11 @@ public class Main_1 extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_btnTimKiemThongTinActionPerformed
 
-    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+    private void btnThemLoaiBenhNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLoaiBenhNhanActionPerformed
         // TODO add your handling code here:
-          XuatExcel frm = new XuatExcel();
+          ThemLoaiBenhNhan frm = new ThemLoaiBenhNhan();
         frm.setVisible(true);
-    }//GEN-LAST:event_btnXuatExcelActionPerformed
+    }//GEN-LAST:event_btnThemLoaiBenhNhanActionPerformed
 
     private void btnThongTinSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTinSanPhamActionPerformed
         // TODO add your handling code here:
@@ -120,6 +128,12 @@ public class Main_1 extends javax.swing.JFrame {
         a.setVisible(true);
         
     }//GEN-LAST:event_btnThongTinSanPhamActionPerformed
+
+    private void btnThemLoaiThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLoaiThuocActionPerformed
+        ThemLoaiThuoc frm = new ThemLoaiThuoc();
+        //this.setVisible(false);
+        frm.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnThemLoaiThuocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,12 +165,12 @@ public class Main_1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnThemLoaiBenhNhan;
+    private javax.swing.JButton btnThemLoaiThuoc;
     private javax.swing.JButton btnThemThongTinBenhNhanLao;
     private javax.swing.JButton btnThongTinSanPham;
     private javax.swing.JButton btnTimKiemThongTin;
-    private javax.swing.JButton btnXuatExcel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

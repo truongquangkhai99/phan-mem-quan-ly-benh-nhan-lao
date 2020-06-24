@@ -55,24 +55,25 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label4.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        label4.setText("lớp 17DTHC6 ");
-        getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 160, 20));
+        label4.setText("4 thành viên lớp 17DTHC6-D1");
+        getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 170, 20));
+        label4.getAccessibleContext().setAccessibleName("4 thành viên lớp 17DTHC6-D1");
 
         label5.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         label5.setText("1. Nguyễn Ngọc Thuỷ Tiên");
         getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         label6.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label6.setText("2. Đoàn Thị Thanh Lam");
+        label6.setText("2. Nguyễn Hữu Tính");
         getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
 
         label7.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label7.setText("3. Nguyễn Hữu Đạt");
+        label7.setText("3. Đoàn Thanh Lam");
         getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
-        label8.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        label8.setText("4. Nguyễn Hữu Tính");
-        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, 20));
+        label9.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        label9.setText("4. Nguyễn Hữu Đạt");
+        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         label11.setName(""); // NOI18N
         label11.setText("-----------------------------");
@@ -124,7 +125,7 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 90, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 110, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -197,6 +198,10 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
     private java.awt.Label label5;
     private java.awt.Label label6;
     private java.awt.Label label7;
+<<<<<<< HEAD
     private java.awt.Label label8;
+=======
+    private java.awt.Label label9;
+>>>>>>> 109eba274c53215a502a08bbbdc23b06c14e2cd2
     // End of variables declaration//GEN-END:variables
 }

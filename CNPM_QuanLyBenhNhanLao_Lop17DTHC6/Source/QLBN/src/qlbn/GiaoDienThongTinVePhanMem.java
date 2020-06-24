@@ -65,7 +65,6 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         label6.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         label6.setText("2. Đoàn Thị Thanh Lam");
         getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
-        label6.getAccessibleContext().setAccessibleName("2. Đoàn Thị Thanh Lam");
 
         label7.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         label7.setText("3. Nguyễn Hữu Đạt");
@@ -96,7 +95,7 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 190, 30));
 
         label16.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        label16.setText("Email: nguyenngocthuytien994@gmail.com");
+        label16.setText("Email: nguyenngocthuytien0607@gmail.com");
         getContentPane().add(label16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 260, -1));
         label16.getAccessibleContext().setAccessibleName("nguyenngocthuytien0607@gmail.com");
 

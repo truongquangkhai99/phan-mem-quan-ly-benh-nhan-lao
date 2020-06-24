@@ -5,13 +5,6 @@ package qlbn;
  * @author Tien Nguyen
  */
 public class TimXoaSua extends javax.swing.JFrame {
-
-    /**
-     * Creates new form GiaoDienChinh
-     */
-//    BENHNHANBUS bnbus=new BENHNHANBUS();
-//    List<BENHNHAN> list= new ArrayList();
-//    List<BENHNHAN> list_xoa = new ArrayList();
     
     public TimXoaSua() {
         initComponents();
@@ -57,6 +50,11 @@ public class TimXoaSua extends javax.swing.JFrame {
 
         txtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTimKiem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiemActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 140, 278, 34));
 
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -130,6 +128,7 @@ public class TimXoaSua extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        grBenhNhan.setColumnSelectionAllowed(true);
         grBenhNhan.setFillsViewportHeight(true);
         grBenhNhan.setFocusCycleRoot(true);
         grBenhNhan.setFocusTraversalPolicyProvider(true);
@@ -218,6 +217,10 @@ public class TimXoaSua extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
       
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemActionPerformed
 
     /**
      * @param args the command line arguments

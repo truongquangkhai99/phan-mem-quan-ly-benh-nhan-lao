@@ -42,7 +42,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btnThemThongTinBenhNhanLao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThemThongTinBenhNhanLao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconthem.png"))); // NOI18N
-        btnThemThongTinBenhNhanLao.setText("THÊM THÔNG TIN BỆNH NHÂN");
+        btnThemThongTinBenhNhanLao.setText("QUẢN LÝ LOẠI BỆNH NHÂN");
+        btnThemThongTinBenhNhanLao.setAlignmentX(5.0F);
+        btnThemThongTinBenhNhanLao.setAlignmentY(5.0F);
         btnThemThongTinBenhNhanLao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemThongTinBenhNhanLaoActionPerformed(evt);
@@ -52,7 +54,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btnTimKiemThongTin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnTimKiemThongTin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/icontimxoasua.png"))); // NOI18N
-        btnTimKiemThongTin.setText("TÌM KIẾM - SỬA - XOÁ  THÔNG TIN ");
+        btnTimKiemThongTin.setText("QUẢN LÝ THÔNG TIN BỆNH NHÂN");
         btnTimKiemThongTin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemThongTinActionPerformed(evt);
@@ -62,7 +64,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btnThongTinSanPham.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThongTinSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconquestion.png"))); // NOI18N
-        btnThongTinSanPham.setText("THÔNG TIN VỀ PHẦN MỀM");
+        btnThongTinSanPham.setText("LIÊN HỆ");
         btnThongTinSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThongTinSanPhamActionPerformed(evt);
@@ -71,8 +73,8 @@ public class ManHinhChinh extends javax.swing.JFrame {
         getContentPane().add(btnThongTinSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 280, 110));
 
         btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnXuatExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconexcel.png"))); // NOI18N
-        btnXuatExcel.setText("XUẤT EXCEL");
+        btnXuatExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/drug.png"))); // NOI18N
+        btnXuatExcel.setText("QUẢN LÝ LOẠI THUỐC");
         btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXuatExcelActionPerformed(evt);
@@ -82,7 +84,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("PHẦN MỀM QUẢN LÝ BỆNH NHÂNH LAO");
+        jLabel1.setText("PHẦN MỀM QUẢN LÝ BỆNH NHÂN LAO");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 480, 40));
 
         jLabel3.setText("jLabel3");
@@ -96,27 +98,30 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     private void btnThemThongTinBenhNhanLaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemThongTinBenhNhanLaoActionPerformed
         // TODO add your handling code here:
-         Them frm = new Them();
-        //this.setVisible(false);
-        frm.setVisible(rootPaneCheckingEnabled);
+        ThemLoaiBenhNhan themLoaiBN = new ThemLoaiBenhNhan();
+        this.setVisible(false);
+        themLoaiBN.setVisible(true);
     }//GEN-LAST:event_btnThemThongTinBenhNhanLaoActionPerformed
 
     private void btnTimKiemThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemThongTinActionPerformed
         // TODO add your handling code here:
-          TimXoaSua frm = new TimXoaSua();
+        TimXoaSua frm = new TimXoaSua();
         frm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnTimKiemThongTinActionPerformed
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         // TODO add your handling code here:
-          XuatExcel frm = new XuatExcel();
-        frm.setVisible(true);
+        ThemLoaiThuoc tlt = new ThemLoaiThuoc();
+        this.setVisible(false);
+        tlt.setVisible(true);
     }//GEN-LAST:event_btnXuatExcelActionPerformed
 
     private void btnThongTinSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTinSanPhamActionPerformed
         // TODO add your handling code here:
         GiaoDienThongTinVePhanMem a = new GiaoDienThongTinVePhanMem();
         a.setVisible(true);
+        
     }//GEN-LAST:event_btnThongTinSanPhamActionPerformed
 
     /**

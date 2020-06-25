@@ -65,6 +65,7 @@ public class ThemLoaiBenhNhan extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản Lý Loại Bệnh Nhân");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -304,8 +305,7 @@ public class ThemLoaiBenhNhan extends javax.swing.JFrame {
 
                     }
                 }
-            });
-//           
+            });     
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

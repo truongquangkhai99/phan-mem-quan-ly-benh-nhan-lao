@@ -203,7 +203,9 @@ public class TimXoaSua extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-  
+        ManHinhChinh mhc = new ManHinhChinh();
+        mhc.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavaActionPerformed

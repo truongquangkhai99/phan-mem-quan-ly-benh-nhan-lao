@@ -5,11 +5,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Connection.SqlConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Calendar;
 
 /**
@@ -21,6 +21,7 @@ public class Them extends javax.swing.JFrame {
     Statement statement;
     Connection conn;
     ResultSet resultSet;
+    PreparedStatement ps = null;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     public Them() {
@@ -34,7 +35,6 @@ public class Them extends javax.swing.JFrame {
                 Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sql = "SELECT * FROM LOAIBENHNHAN";
-            ResultSet resultSet;
             resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -45,12 +45,12 @@ public class Them extends javax.swing.JFrame {
             while (resultSet.next()) {
                 this.cbxLoaiThuoc.addItem(resultSet.getString("TENLOAI"));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         this.dtpNgayDT.setFormats("dd/MM/yyyy");
         this.cbxLoaiThuoc.setEnabled(false);
-        this.btnThemLoaiThuoc.setEnabled(false);   
+        this.btnThemLoaiThuoc.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -267,7 +267,7 @@ public class Them extends javax.swing.JFrame {
 
     //hàm dùng để insert thuốc bn sử dụng, bn mới & tái phát dùng giống nhau 3 loại thuốc, khác thời gian điều trị
     //tùy theo cân nặng khác nhau số lượng viên sẽ khác nhau
-    public void InsertSuDungThuoc(int MaBN, int SLVRHZ, int SLVE, int SLVRH, String ngayBDTC, String ngayKTTC, String ngayBDCC, String ngayKTCC) {
+    public void InsertSuDungThuoc(int MaBN, int SLVRHZ, int SLVE, int SLVRH, java.sql.Date ngayBDTC, java.sql.Date ngayKTTC, java.sql.Date ngayBDCC, java.sql.Date ngayKTCC) {
         //lấy ra mã loại thuốc RHZ cho bệnh nhân Mới
         try {
             String sqlRHZ = "select MALOAI from LOAITHUOC where LOAITHUOC.TENLOAI = 'RHZ'";
@@ -293,27 +293,48 @@ public class Them extends javax.swing.JFrame {
                 maRH = resultSet.getInt(1);
             }
 
-            String insertSDT1 = "INSERT INTO SUDUNGTHUOC (MALOAI,MABN,SoLuongVien,NgayBDTC,NgayKTTC,NgayBDCC,NgayKTCC)\n"
-                    + "VALUES ('" + maRHZ + "', '" + MaBN + "', '" + SLVRHZ + "', '" + ngayBDTC + "', '" + ngayKTTC + "', null, null)";
-            int row1 = statement.executeUpdate(insertSDT1);
+            ps = conn.prepareStatement("insert into SUDUNGTHUOC values(?, ?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, maRHZ);
+            ps.setInt(2, MaBN);
+            ps.setInt(3, SLVRHZ);
+            ps.setDate(4, ngayBDTC);
+            ps.setDate(5, ngayKTTC);
+            ps.setDate(6, null);
+            ps.setDate(7, null);
+
+            int row1 = ps.executeUpdate();
             if (row1 > 0) {
                 System.out.println("insert mã thuốc RHZ thành công");
             } else {
                 System.out.println("insert mã thuốc RHZ thất bại");
             }
 
-            String insertSDT2 = "INSERT INTO SUDUNGTHUOC (MALOAI,MABN,SoLuongVien,NgayBDTC,NgayKTTC,NgayBDCC,NgayKTCC)\n"
-                    + "VALUES ('" + maE + "', '" + MaBN + "', '" + SLVE + "', '" + ngayBDTC + "', '" + ngayKTTC + "','" + ngayBDCC + "','" + ngayKTCC + "')";
-            int row2 = statement.executeUpdate(insertSDT2);
+            ps = conn.prepareStatement("insert into SUDUNGTHUOC values(?, ?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, maE);
+            ps.setInt(2, MaBN);
+            ps.setInt(3, SLVRHZ);
+            ps.setDate(4, ngayBDTC);
+            ps.setDate(5, ngayKTTC);
+            ps.setDate(6, ngayBDCC);
+            ps.setDate(7, ngayKTCC);
+
+            int row2 = ps.executeUpdate();
             if (row2 > 0) {
                 System.out.println("insert mã thuốc E thành công");
             } else {
                 System.out.println("insert mã thuốc E thất bại");
             }
 
-            String insertSDT3 = "INSERT INTO SUDUNGTHUOC (MALOAI,MABN,SoLuongVien,NgayBDTC,NgayKTTC,NgayBDCC,NgayKTCC)\n"
-                    + "VALUES ('" + maRH + "', '" + MaBN + "', '" + SLVRH + "', null, null,'" + ngayBDCC + "','" + ngayKTCC + "')";
-            int row3 = statement.executeUpdate(insertSDT3);
+            ps = conn.prepareStatement("insert into SUDUNGTHUOC values(?, ?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, maRH);
+            ps.setInt(2, MaBN);
+            ps.setInt(3, SLVRHZ);
+            ps.setDate(4, null);
+            ps.setDate(5, null);
+            ps.setDate(6, ngayBDCC);
+            ps.setDate(7, ngayKTCC);
+
+            int row3 = ps.executeUpdate();
             if (row3 > 0) {
                 System.out.println("insert mã thuốc RH thành công");
             } else {
@@ -330,7 +351,7 @@ public class Them extends javax.swing.JFrame {
     }
 
     //thêm tháng dùng Calendar truyền vào date + số tháng trả về date
-    public Date addMonth(Date date, int i) {
+    public java.util.Date addMonth(java.util.Date date, int i) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.MONTH, i);
@@ -338,7 +359,7 @@ public class Them extends javax.swing.JFrame {
     }
 
     //thêm ngày dùng Calendar truyền vào date + số ngày trả về date
-    public static Date addDay(Date date, int i) {
+    public static java.util.Date addDay(java.util.Date date, int i) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DAY_OF_YEAR, i);
@@ -356,30 +377,39 @@ public class Them extends javax.swing.JFrame {
             String diaChi = txtLocation.getText();
             int loaiBN = cbxLoaiBN.getSelectedIndex();
             int canNang = Integer.parseInt(txtCanNang.getText());
-            Date ngayDT = dtpNgayDT.getDate();
+            java.util.Date ngayDT = dtpNgayDT.getDate();
+            //chuyển sang sql.Date mới insert vô db đc vì db là kiểu Date
+            java.sql.Date ngayBDTC = new java.sql.Date(ngayDT.getTime());
             int thoiGianTC = 0, thoiGianCC = 0;
 
             if (cbxLoaiBN.getSelectedIndex() == 0) {
                 thoiGianTC = 2;
                 thoiGianCC = 4;
-                txtThoiGianDT.setText("6");
             } else {
                 if (cbxLoaiBN.getSelectedIndex() == 1) {
                     thoiGianTC = 3;
                     thoiGianCC = 5;
-                    txtThoiGianDT.setText("8");
                 }
             }
             int thoiGianDT = Integer.parseInt(txtThoiGianDT.getText());
             //do loại bn lấy từ combobox mà cbx đếm từ 0 nên phải +1
             loaiBN++;
-            String ngayBDTC = formatter.format(ngayDT);
+
             //viết câu insert xuống db
-            String sqlInsertBN = "INSERT INTO BENHNHAN (TENBN,TUOI,DIACHI,GIOITINH,MALOAIBN,CANNANG,NGAYBDDT,THOIGIANDT,THOIGIANTC,THOIGIANCC)\n"
-                    + "VALUES (N'" + ten + "', '" + tuoi + "', N'" + diaChi + "', '" + gioiTinh + "', '" + loaiBN + "','" + canNang + "','" + ngayBDTC + "','" + thoiGianDT + "','" + thoiGianTC + "', '" + thoiGianCC + "')";
+            ps = conn.prepareStatement("insert into BENHNHAN values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, ten);
+            ps.setInt(2, tuoi);
+            ps.setString(3, diaChi);
+            ps.setBoolean(4, gioiTinh);
+            ps.setInt(5, loaiBN);
+            ps.setInt(6, canNang);
+            ps.setDate(7, ngayBDTC);
+            ps.setInt(8, thoiGianDT);
+            ps.setInt(9, thoiGianTC);
+            ps.setInt(10, thoiGianCC);
 
             //excuteUpdate trả về số dòng thực hiện đc
-            int rowBN = statement.executeUpdate(sqlInsertBN);
+            int rowBN = ps.executeUpdate();
             if (rowBN > 0) {
                 JOptionPane.showMessageDialog(null, "Thêm bệnh nhân thành công!");
             } else {
@@ -388,7 +418,7 @@ public class Them extends javax.swing.JFrame {
 
             //lấy ra mã bn vừa insert vào để insert vào bảng sử dụng thuốc
             String sqlLayMaBN = "select MAX(MaBN) from BENHNHAN";
-            ResultSet resultSet = statement.executeQuery(sqlLayMaBN);
+            resultSet = statement.executeQuery(sqlLayMaBN);
             int layMaBN = 0;
             while (resultSet.next()) {
                 layMaBN = resultSet.getInt(1);
@@ -396,37 +426,47 @@ public class Them extends javax.swing.JFrame {
 
             //mỗi bệnh nhân có 1 danh sách thuốc sdung, tùy theo loại bn và cân nặng, thời gian đtrị tùy vào loại bn
             if (loaiBN == 1) {
-                Date ngayKTTC = addMonth(ngayDT, 2);
-                Date ngayBDCC = addDay(ngayKTTC, 1);
-                Date ngayKTCC = addMonth(ngayBDCC, 2);
+                java.util.Date ngaykttc = addDay(ngayDT, 2);
+                java.util.Date ngaybdcc = addDay(ngaykttc, 1);
+                java.util.Date ngayktcc = addMonth(ngaybdcc, 2);
+                //chuyển ngày sang util.Date để tính toán và chuyển về sql.Date để insert xuống db
+                java.sql.Date ngayKTTC = new java.sql.Date(ngaykttc.getTime());
+                java.sql.Date ngayBDCC = new java.sql.Date(ngaybdcc.getTime());
+                java.sql.Date ngayKTCC = new java.sql.Date(ngayktcc.getTime());
+
                 if (canNang < 39) {
-                    InsertSuDungThuoc(layMaBN, 2, 2, 2, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    InsertSuDungThuoc(layMaBN, 2, 2, 2, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                 }
                 if (canNang >= 40 && canNang < 55) {
-                    InsertSuDungThuoc(layMaBN, 3, 2, 3, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    InsertSuDungThuoc(layMaBN, 3, 2, 3, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                 }
                 if (canNang >= 55 && canNang < 70) {
-                    InsertSuDungThuoc(layMaBN, 4, 3, 4, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    InsertSuDungThuoc(layMaBN, 4, 3, 4, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                 }
                 if (canNang >= 70) {
-                    InsertSuDungThuoc(layMaBN, 5, 4, 5, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                    InsertSuDungThuoc(layMaBN, 5, 4, 5, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                 }
             } else {
                 if (loaiBN == 2) {
-                    Date ngayKTTC = addMonth(ngayDT, 3);
-                    Date ngayBDCC = addDay(ngayKTTC, 1);
-                    Date ngayKTCC = addMonth(ngayBDCC, 5);
+                    java.util.Date ngaykttc = addDay(ngayDT, 3);
+                    java.util.Date ngaybdcc = addDay(ngaykttc, 1);
+                    java.util.Date ngayktcc = addMonth(ngaybdcc, 5);
+
+                    java.sql.Date ngayKTTC = new java.sql.Date(ngaykttc.getTime());
+                    java.sql.Date ngayBDCC = new java.sql.Date(ngaybdcc.getTime());
+                    java.sql.Date ngayKTCC = new java.sql.Date(ngayktcc.getTime());
+
                     if (canNang < 39) {
-                        InsertSuDungThuoc(layMaBN, 2, 2, 2, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                        InsertSuDungThuoc(layMaBN, 2, 2, 2, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                     }
                     if (canNang >= 40 && canNang < 55) {
-                        InsertSuDungThuoc(layMaBN, 3, 2, 3, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                        InsertSuDungThuoc(layMaBN, 3, 2, 3, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                     }
                     if (canNang >= 55 && canNang < 70) {
-                        InsertSuDungThuoc(layMaBN, 4, 3, 4, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                        InsertSuDungThuoc(layMaBN, 4, 3, 4, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                     }
                     if (canNang >= 70) {
-                        InsertSuDungThuoc(layMaBN, 5, 4, 5, ngayBDTC, formatter.format(ngayKTTC), formatter.format(ngayBDCC), formatter.format(ngayKTCC));
+                        InsertSuDungThuoc(layMaBN, 5, 4, 5, ngayBDTC, ngayKTTC, ngayBDCC, ngayKTCC);
                     }
                 }
             }
@@ -473,9 +513,15 @@ public class Them extends javax.swing.JFrame {
         if (cbxLoaiBN.getSelectedIndex() != 0 && cbxLoaiBN.getSelectedIndex() != 1) {
             this.cbxLoaiThuoc.setEnabled(true);
             this.btnThemLoaiThuoc.setEnabled(true);
-        }else{
+        } else {
             this.cbxLoaiThuoc.setEnabled(false);
             this.btnThemLoaiThuoc.setEnabled(false);
+        }
+        if (cbxLoaiBN.getSelectedIndex() == 0) {
+            txtThoiGianDT.setText("6");
+        }
+        if (cbxLoaiBN.getSelectedIndex() == 1) {
+            txtThoiGianDT.setText("8");
         }
     }//GEN-LAST:event_cbxLoaiBNActionPerformed
 

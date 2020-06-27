@@ -109,7 +109,7 @@ public class GiaoDienThongTinVePhanMem extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 110));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbn/iconBack.png"))); // NOI18N
-        jButton1.setText("Back");
+        jButton1.setText("Trở Về");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

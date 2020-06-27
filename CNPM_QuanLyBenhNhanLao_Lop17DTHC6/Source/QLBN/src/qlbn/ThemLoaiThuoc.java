@@ -39,6 +39,7 @@ public class ThemLoaiThuoc extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         LayDuLieu();
+        
     }
 
     /**
@@ -155,6 +156,11 @@ public class ThemLoaiThuoc extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        grLoaiThuoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grLoaiThuocMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(grLoaiThuoc);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 800, 190));
@@ -184,6 +190,43 @@ public class ThemLoaiThuoc extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenLoaiThuocActionPerformed
 
+    private void LayDuLieu() {
+        try {
+            conn = sqlConn.getSQLServerConnection();
+            try {
+                statement = conn.createStatement();
+            } catch (SQLException ex) {
+                Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int number;
+            Vector row, column;
+            int stt = 1;
+            column = new Vector();
+            rs = statement.executeQuery("select * from LOAITHUOC");
+            ResultSetMetaData metadata = rs.getMetaData();
+            number = metadata.getColumnCount();
+            column.addElement("STT");
+            for (int i = 2; i <= number; i++) {
+                column.add(metadata.getColumnName(i));
+            }
+            tblModel.setColumnIdentifiers(column);
+
+            while (rs.next()) {
+                row = new Vector();
+                row.addElement(stt++);
+                for (int i = 2; i <= number; i++) {
+                    //row.addElement(stt++);
+                    row.addElement(rs.getString(i));
+                }
+                tblModel.addRow(row);
+                grLoaiThuoc.setModel(tblModel);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         if (txtTenLoaiThuoc.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập tên loại thuốc");
@@ -243,7 +286,16 @@ public class ThemLoaiThuoc extends javax.swing.JFrame {
         ManHinhChinh mhc = new ManHinhChinh();
         mhc.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
+    private void NapItemDuocChon() {
+        if (grLoaiThuoc.getSelectedRow() < 0) {
+            return;
+        }
+        int row = grLoaiThuoc.getSelectedRow();
 
+        txtMoTa.setText((String) grLoaiThuoc.getValueAt(row, 1));
+
+        txtTenLoaiThuoc.setText((String) grLoaiThuoc.getValueAt(row, 2));
+    }
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         try {
             conn = sqlConn.getSQLServerConnection();
@@ -288,6 +340,10 @@ public class ThemLoaiThuoc extends javax.swing.JFrame {
         mhc.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void grLoaiThuocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grLoaiThuocMouseClicked
+        NapItemDuocChon();
+    }//GEN-LAST:event_grLoaiThuocMouseClicked
 
     /**
      * @param args the command line arguments
@@ -339,65 +395,5 @@ public class ThemLoaiThuoc extends javax.swing.JFrame {
     private javax.swing.JTextField txtMoTa;
     private javax.swing.JTextField txtTenLoaiThuoc;
     // End of variables declaration//GEN-END:variables
-
-    private void LayDuLieu() {
-        try {
-            conn = sqlConn.getSQLServerConnection();
-            try {
-                statement = conn.createStatement();
-            } catch (SQLException ex) {
-                Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            int number;
-            Vector row, column;
-            column = new Vector();
-            rs = statement.executeQuery("select * from LOAITHUOC");
-            ResultSetMetaData metadata = rs.getMetaData();
-            number = metadata.getColumnCount();
-            for (int i = 1; i <= number; i++) {
-                column.add(metadata.getColumnName(i));
-            }
-            tblModel.setColumnIdentifiers(column);
-
-            while (rs.next()) {
-                row = new Vector();
-                for (int i = 1; i <= number; i++) {
-                    row.addElement(rs.getString(i));
-                }
-                tblModel.addRow(row);
-                grLoaiThuoc.setModel(tblModel);
-
-            }
-            grLoaiThuoc.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-                @Override
-                public void valueChanged(ListSelectionEvent e) {
-                    if (grLoaiThuoc.getSelectedRow() >= 0) {
-                        //jTextField1.setText(grLoaiThuoc.getValueAt(grLoaiThuoc.getSelectedRow(),0)+"");
-                        txtMoTa.setText(grLoaiThuoc.getValueAt(grLoaiThuoc.getSelectedRow(), 1) + "");
-                        txtTenLoaiThuoc.setText(grLoaiThuoc.getValueAt(grLoaiThuoc.getSelectedRow(), 2) + "");
-                    }
-                }
-            });
-//           
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-
-    }
-
+  
 }

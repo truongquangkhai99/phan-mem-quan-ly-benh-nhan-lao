@@ -5,6 +5,10 @@
  */
 package qlbn;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Tien Nguyen
@@ -102,10 +106,16 @@ public class ManHinhChinh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemLoaiBNActionPerformed
 
     private void btnQLTTBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLTTBNActionPerformed
-        // TODO add your handling code here:
-        TimXoaSua frm = new TimXoaSua();
-        frm.setVisible(true);
-        this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            TimXoaSua frm = new TimXoaSua();
+            frm.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManHinhChinh.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManHinhChinh.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnQLTTBNActionPerformed
 
     private void btnLienHeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLienHeActionPerformed

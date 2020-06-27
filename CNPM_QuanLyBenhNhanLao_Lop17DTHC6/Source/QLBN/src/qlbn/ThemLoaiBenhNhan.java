@@ -269,59 +269,50 @@ public class ThemLoaiBenhNhan extends javax.swing.JFrame {
 
     private void LayDuLieu() {
         try {
-            conn = sqlConn.getSQLServerConnection();
-            try {
-                statement = conn.createStatement();
-            } catch (SQLException ex) {
+            conn=sqlConn.getSQLServerConnection();
+            try{
+                statement=conn.createStatement();
+            }
+            catch(SQLException ex){
                 Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
             }
             int number;
-            Vector row, column;
-            column = new Vector();
-            rs = statement.executeQuery("select * from LOAIBENHNHAN");
-            ResultSetMetaData metadata = rs.getMetaData();
-            number = metadata.getColumnCount();
-            for (int i = 1; i <= number; i++) {
+            int stt=1;
+            Vector row,column;
+            column =new Vector();
+            rs=statement.executeQuery("select * from LOAIBENHNHAN");
+            ResultSetMetaData metadata=rs.getMetaData();
+            number =metadata.getColumnCount();
+             column.addElement("STT");
+            for(int i=2;i<=number;i++){
                 column.add(metadata.getColumnName(i));
             }
             tblModel.setColumnIdentifiers(column);
-
-            while (rs.next()) {
-                row = new Vector();
-                for (int i = 1; i <= number; i++) {
+            
+            while (rs.next()) {                
+                row=new Vector();
+                row.addElement(stt++);
+                for(int i=2;i<=number;i++){
                     row.addElement(rs.getString(i));
                 }
                 tblModel.addRow(row);
                 grLoaiBenhNhan.setModel(tblModel);
-
+                        
             }
             grLoaiBenhNhan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
                 @Override
                 public void valueChanged(ListSelectionEvent e) {
-                    if (grLoaiBenhNhan.getSelectedRow() >= 0) {
+                    if(grLoaiBenhNhan.getSelectedRow()>=0){
                         //jTextField1.setText(grLoaiThuoc.getValueAt(grLoaiThuoc.getSelectedRow(),0)+"");
-                        txtTenLoai.setText(grLoaiBenhNhan.getValueAt(grLoaiBenhNhan.getSelectedRow(), 1) + "");
-
+                        txtTenLoai.setText(grLoaiBenhNhan.getValueAt(grLoaiBenhNhan.getSelectedRow(),1)+"");
+                        
                     }
                 }
-            });     
+            });
+//           
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
         }
     }
 }

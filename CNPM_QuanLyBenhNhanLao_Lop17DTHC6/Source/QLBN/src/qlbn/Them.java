@@ -312,7 +312,7 @@ public class Them extends javax.swing.JFrame {
             ps = conn.prepareStatement("insert into SUDUNGTHUOC values(?, ?, ?, ?, ?, ?, ?)");
             ps.setInt(1, maE);
             ps.setInt(2, MaBN);
-            ps.setInt(3, SLVRHZ);
+            ps.setInt(3, SLVE);
             ps.setDate(4, ngayBDTC);
             ps.setDate(5, ngayKTTC);
             ps.setDate(6, ngayBDCC);
@@ -328,7 +328,7 @@ public class Them extends javax.swing.JFrame {
             ps = conn.prepareStatement("insert into SUDUNGTHUOC values(?, ?, ?, ?, ?, ?, ?)");
             ps.setInt(1, maRH);
             ps.setInt(2, MaBN);
-            ps.setInt(3, SLVRHZ);
+            ps.setInt(3, SLVRH);
             ps.setDate(4, null);
             ps.setDate(5, null);
             ps.setDate(6, ngayBDCC);
@@ -476,7 +476,15 @@ public class Them extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
+        try {
+            TimXoaSua txs = new TimXoaSua();
+            txs.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Them.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Them.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void rbtNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNuActionPerformed

@@ -1,4 +1,3 @@
-
 package qlbn;
 
 import Connection.SqlConnection;
